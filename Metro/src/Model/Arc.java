@@ -1,34 +1,34 @@
 package Model;
 
 public class Arc {
+	int id;
 	int idSommet1;
 	int idSommet2;
 	int valeurArc;
 	
-	float minPh;
-	float maxPh;
+	int pheromone;
 	float tauxEvaporation;
 	
-	public Arc(int idSommet1, int idSommet2, int valeurArc, float minPh, float maxPh, float tauxEvaporation) {
+	public Arc(int id, int idSommet1, int idSommet2, int valeurArc, int pheromone, float tauxEvaporation) {
+		this.id = id;
 		this.idSommet1 = idSommet1;
 		this.idSommet2 = idSommet2;
 		this.valeurArc = valeurArc;
-		this.minPh = minPh;
-		this.maxPh = maxPh;
+		this.pheromone = pheromone;
 		this.tauxEvaporation = tauxEvaporation;
 	}
-
-	public float getMinPh() {
-		return minPh;
+	
+	public int getPheromone() {
+		return pheromone;
 	}
-	public void setMinPh(float minPh) {
-		this.minPh = minPh;
+	public void setPheromone(int pheromone) {
+		this.pheromone = pheromone;
 	}
-	public float getMaxPh() {
-		return maxPh;
+	public int getId(){
+		return id;
 	}
-	public void setMaxPh(float maxPh) {
-		this.maxPh = maxPh;
+	public void setId(int id){
+		this.id = id;
 	}
 	public float getTauxEvaporation() {
 		return tauxEvaporation;

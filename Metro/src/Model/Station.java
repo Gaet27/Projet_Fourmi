@@ -9,15 +9,13 @@ public class Station {
 	int x;
 	int y;
 	ArrayList<Arc> ArcStation;
-	int nbArcs;
 	
-	public Station(int id, String nom, int x, int y, ArrayList<Arc> arcStation, int nbArcs) {
+	public Station(int id, String nom, int x, int y, ArrayList<Arc> arcStation) {
 		this.id = id;
 		this.nom = nom;
 		this.x = x;
 		this.y = y;
-		ArcStation = arcStation;
-		this.nbArcs = nbArcs;
+		ArcStation = new ArrayList<Arc>();
 	}
 
 	public int getId() {
@@ -49,11 +47,5 @@ public class Station {
 	}
 	public void setArcStation(ArrayList<Arc> arcStation) {
 		ArcStation = arcStation;
-	}
-	public int getNbArcs() {
-		return nbArcs;
-	}
-	public void setNbArcs(int nbArcs) {
-		this.nbArcs = nbArcs;
 	}
 }

@@ -3,34 +3,39 @@ import java.util.ArrayList;
 
 public class Metro {
 	
-	String etat; //à l'arret, en déplacement, retour
+	Etat etat;//à l'arret, en déplacement, retour
 	int tempsTrajet;
+	
+	public enum Etat{
+		premierNoeud,
+		cherche,
+		rentre
+	}
 	
 	int nbStationVisitees;
 	ArrayList<Station> stationsVisitees;
 	ArrayList<Station> stationsAVisitees;
 	
-	long currentArcSize;    // longueur de l'arc actuellement parcouru
-	long currentArcPos;    // position sur l'arc actuellement parcouru
+	
+	int currentArcSize;    // longueur de l'arc actuellement parcouru
 	int currentOrigin;        // première extrémité de l'arc actuellement parcouru 
 	int currentDestination;    // seconde extrémité de l'arc actuellement parcouru
 	
-	public Metro(String etat, int tempsTrajet, int nbStationVisitees,ArrayList<Station> stationsVisitees,ArrayList<Station> stationsAVisitees, long currentArcSize,long currentArcPos, int currentOrigin, int currentDestination){
+	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,ArrayList<Station> stationsVisitees,ArrayList<Station> stationsAVisitees, int currentArcSize, int currentOrigin, int currentDestination){
 		this.etat = etat;
 		this.tempsTrajet = tempsTrajet;
 		this.nbStationVisitees = nbStationVisitees;
 		this.stationsVisitees = stationsVisitees;
 		this.stationsAVisitees = stationsAVisitees;
 		this.currentArcSize = currentArcSize;
-		this.currentArcPos = currentArcPos;
 		this.currentOrigin = currentOrigin;
 		this.currentDestination = currentDestination;
 	}
 	
-	public String getEtat() {
+	public Etat getEtat() {
 		return etat;
 	}
-	public void setEtat(String etat) {
+	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
 	public int getTempsTrajet() {
@@ -60,14 +65,8 @@ public class Metro {
 	public long getCurrentArcSize() {
 		return currentArcSize;
 	}
-	public void setCurrentArcSize(long currentArcSize) {
+	public void setCurrentArcSize(int currentArcSize) {
 		this.currentArcSize = currentArcSize;
-	}
-	public long getCurrentArcPos() {
-		return currentArcPos;
-	}
-	public void setCurrentArcPos(long currentArcPos) {
-		this.currentArcPos = currentArcPos;
 	}
 	public int getCurrentOrigin() {
 		return currentOrigin;
