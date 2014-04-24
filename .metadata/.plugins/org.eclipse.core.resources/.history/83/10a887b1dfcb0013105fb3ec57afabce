@@ -1,0 +1,14 @@
+package Iterations;
+
+public class Main {
+
+	final static int nbFourmis = 500;
+	final static int nbIterations = 200;
+	
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

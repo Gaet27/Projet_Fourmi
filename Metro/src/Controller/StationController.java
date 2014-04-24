@@ -7,9 +7,9 @@ import Model.Station;
 
 public class StationController extends Station{
 
-	public StationController(int id, String nom, int x, int y,
+	public StationController(int id, String nom,
 			ArrayList<Arc> arcStation, int nbArcs) {
-		super(id, nom, x, y, arcStation);
+		super(id, nom, arcStation);
 		// TODO Auto-generated constructor stub
 	}
 	

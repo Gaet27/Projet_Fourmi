@@ -4,16 +4,15 @@ public class Arc {
 	int id;
 	int idSommet1;
 	int idSommet2;
-	int valeurArc;
+	int tempsParcours;
 	
 	int pheromone;
 	float tauxEvaporation;
 	
-	public Arc(int id, int idSommet1, int idSommet2, int valeurArc, int pheromone, float tauxEvaporation) {
-		this.id = id;
+	public Arc(int idSommet1, int idSommet2, int tempsParcours, int pheromone, float tauxEvaporation) {
 		this.idSommet1 = idSommet1;
 		this.idSommet2 = idSommet2;
-		this.valeurArc = valeurArc;
+		this.tempsParcours = tempsParcours;
 		this.pheromone = pheromone;
 		this.tauxEvaporation = tauxEvaporation;
 	}
@@ -23,12 +22,6 @@ public class Arc {
 	}
 	public void setPheromone(int pheromone) {
 		this.pheromone = pheromone;
-	}
-	public int getId(){
-		return id;
-	}
-	public void setId(int id){
-		this.id = id;
 	}
 	public float getTauxEvaporation() {
 		return tauxEvaporation;
@@ -48,10 +41,10 @@ public class Arc {
 	public void setIdSommet2(int idSommet2) {
 		this.idSommet2 = idSommet2;
 	}
-	public int getValeurArc() {
-		return valeurArc;
+	public int gettempsParcours() {
+		return tempsParcours;
 	}
-	public void setValeurArc(int valeurArc) {
-		this.valeurArc = valeurArc;
+	public void settempsParcours(int tempsParcours) {
+		this.tempsParcours = tempsParcours;
 	}
 }
