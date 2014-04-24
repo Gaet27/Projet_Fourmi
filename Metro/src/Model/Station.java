@@ -10,12 +10,7 @@ public class Station {
 	int y;
 	ArrayList<Arc> ArcStation;
 	
-	public Station(int id, String nom, int x, int y, ArrayList<Arc> arcStation) {
-		this.id = id;
-		this.nom = nom;
-		this.x = x;
-		this.y = y;
-		ArcStation = new ArrayList<Arc>();
+	public Station() {
 	}
 
 	public int getId() {

@@ -1,15 +1,15 @@
 package Controller;
 
 import Model.Arc;
+import Model.Station;
 
 public class ArcController extends Arc{
-
-	public ArcController(int id, int idSommet1, int idSommet2, int valeurArc,
-			int pheromone, float tauxEvaporation) {
-		super(id, idSommet1, idSommet2, valeurArc, pheromone, tauxEvaporation);
+	
+	public ArcController(Station station1, Station station2) {
+		super(station1, station2);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void calculRatio(){
 		
 	}

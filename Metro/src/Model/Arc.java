@@ -1,21 +1,15 @@
 package Model;
 
 public class Arc {
-	int id;
-	int idSommet1;
-	int idSommet2;
+	Station depart;
+	Station arrivee;
 	int valeurArc;
-	
 	int pheromone;
 	float tauxEvaporation;
 	
-	public Arc(int id, int idSommet1, int idSommet2, int valeurArc, int pheromone, float tauxEvaporation) {
-		this.id = id;
-		this.idSommet1 = idSommet1;
-		this.idSommet2 = idSommet2;
-		this.valeurArc = valeurArc;
-		this.pheromone = pheromone;
-		this.tauxEvaporation = tauxEvaporation;
+	public Arc(Station station1, Station station2) {
+		this.depart = station1;
+		this.arrivee = station2;
 	}
 	
 	public int getPheromone() {
@@ -24,29 +18,23 @@ public class Arc {
 	public void setPheromone(int pheromone) {
 		this.pheromone = pheromone;
 	}
-	public int getId(){
-		return id;
-	}
-	public void setId(int id){
-		this.id = id;
-	}
 	public float getTauxEvaporation() {
 		return tauxEvaporation;
 	}
 	public void setTauxEvaporation(float tauxEvaporation) {
 		this.tauxEvaporation = tauxEvaporation;
 	}
-	public int getIdSommet1() {
-		return idSommet1;
+	public Station getDepart() {
+		return depart;
 	}
-	public void setIdSommet1(int idSommet1) {
-		this.idSommet1 = idSommet1;
+	public void setDepart(Station depart) {
+		this.depart = depart;
 	}
-	public int getIdSommet2() {
-		return idSommet2;
+	public Station getArrivee() {
+		return arrivee;
 	}
-	public void setIdSommet2(int idSommet2) {
-		this.idSommet2 = idSommet2;
+	public void setArrivee(Station arrivee) {
+		this.arrivee = arrivee;
 	}
 	public int getValeurArc() {
 		return valeurArc;
