@@ -4,13 +4,18 @@ import java.util.ArrayList;
 
 public class Station {
 	
-	public int id;
-	public String nom;
-	public ArrayList<Arc> ArcStation;
+	int id;
+	String nom;
+	ArrayList<Arc> ArcStation;
 	
-
+<<<<<<< HEAD
+	public Station(int id, String nom, ArrayList<Arc> arcStation) {
+		this.id = id;
+		this.nom = nom;
+		ArcStation = new ArrayList<Arc>();
+=======
 	public Station() {
-
+>>>>>>> 39634dcb8354c4bf8107f797d48bfaf97f6ee783
 	}
 
 	public int getId() {

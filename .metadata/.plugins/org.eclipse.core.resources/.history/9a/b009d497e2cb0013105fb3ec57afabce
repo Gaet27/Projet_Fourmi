@@ -1,18 +1,32 @@
 package Model;
 
 public class Arc {
-
+<<<<<<< HEAD
+	int id;
+	int idSommet1;
+	int idSommet2;
+	int tempsParcours;
+	
+	int pheromone;
+	float tauxEvaporation;
+	
+	public Arc(int idSommet1, int idSommet2, int tempsParcours, int pheromone, float tauxEvaporation) {
+		this.idSommet1 = idSommet1;
+		this.idSommet2 = idSommet2;
+		this.tempsParcours = tempsParcours;
+		this.pheromone = pheromone;
+		this.tauxEvaporation = tauxEvaporation;
+=======
 	Station depart;
 	Station arrivee;
 	int valeurArc;
 	int pheromone;
-	double tauxEvaporation;
-	int tempsParcours;
+	float tauxEvaporation;
 	
 	public Arc(Station station1, Station station2) {
 		this.depart = station1;
 		this.arrivee = station2;
-
+>>>>>>> 39634dcb8354c4bf8107f797d48bfaf97f6ee783
 	}
 	
 	public int getPheromone() {
@@ -21,10 +35,10 @@ public class Arc {
 	public void setPheromone(int pheromone) {
 		this.pheromone = pheromone;
 	}
-	public double getTauxEvaporation() {
+	public float getTauxEvaporation() {
 		return tauxEvaporation;
 	}
-	public void setTauxEvaporation(double tauxEvaporation) {
+	public void setTauxEvaporation(float tauxEvaporation) {
 		this.tauxEvaporation = tauxEvaporation;
 	}
 	public Station getDepart() {
