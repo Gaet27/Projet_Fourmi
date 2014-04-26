@@ -1,9 +1,9 @@
 package Iterations;
-import java.text.DecimalFormat;
+import java.util.ListIterator;
 
-import Controller.StationController;
-import Model.Arc;
-import Model.Station;
+import Controller.*;
+import Model.*;
+import Interfaces.*;
 
 
 public class Main {
@@ -43,6 +43,7 @@ public class Main {
 		affichageStation(station1, station2, station3, station4);
 		
 
+
 		int declencheEvaporation = 0;
 		for (int i = 1; i <= nbIterations; i++) {
 			
@@ -50,15 +51,7 @@ public class Main {
 			declencheEvaporation++;
 			if(declencheEvaporation == 20)
 			{
-				for (Arc key : Arc.ListeArc )
-				{
-					double phe = key.getPheromone();
-					phe = phe * (1 - tauxEvaporation);
-					key.setPheromone(Math.round(phe*100.0)/100.0);
-					System.out.println(key.getDepart()+" : " + key.getArrivee());
-					System.out.println("Nouveau taux : "+key.getPheromone());
-					System.out.println("\n---------------------------------------\n");
-				}
+				for ()
 				declencheEvaporation = 0;
 			}
 		}

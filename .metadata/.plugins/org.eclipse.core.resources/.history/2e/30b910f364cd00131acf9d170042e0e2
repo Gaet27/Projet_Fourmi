@@ -11,7 +11,7 @@ public abstract class Arc implements ArcInterface{
 	public String depart;
 	public String arrivee;
 	public double pheromone;
-	public int tempsParcours;    //En secondes
+	public int tempsParcours;
 	
 	
 	

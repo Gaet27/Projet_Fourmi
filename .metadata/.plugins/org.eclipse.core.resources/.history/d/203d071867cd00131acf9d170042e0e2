@@ -1,6 +1,4 @@
 package Iterations;
-import java.text.DecimalFormat;
-
 import Controller.StationController;
 import Model.Arc;
 import Model.Station;
@@ -10,7 +8,7 @@ public class Main {
 
 	final static int nbFourmis = 500;
 	final static int nbIterations = 200;
-	final static double tauxEvaporation = 0.02;
+	final static double tauxEvaporation = 0.4;
 	final static int tempsIteration = 10;         //En secondes
 	
 	
@@ -53,8 +51,8 @@ public class Main {
 				for (Arc key : Arc.ListeArc )
 				{
 					double phe = key.getPheromone();
-					phe = phe * (1 - tauxEvaporation);
-					key.setPheromone(Math.round(phe*100.0)/100.0);
+					phe = Math.round(phe * (1 - tauxEvaporation));
+					key.setPheromone(phe);
 					System.out.println(key.getDepart()+" : " + key.getArrivee());
 					System.out.println("Nouveau taux : "+key.getPheromone());
 					System.out.println("\n---------------------------------------\n");

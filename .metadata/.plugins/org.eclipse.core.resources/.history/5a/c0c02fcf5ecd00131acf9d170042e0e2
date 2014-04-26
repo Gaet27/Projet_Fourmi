@@ -1,9 +1,7 @@
 package Iterations;
-import java.text.DecimalFormat;
-
-import Controller.StationController;
-import Model.Arc;
-import Model.Station;
+import Controller.*;
+import Model.*;
+import Interfaces.*;
 
 
 public class Main {
@@ -38,36 +36,14 @@ public class Main {
 		station1.lierStation(station3, 42);
 		station2.lierStation(station4, 38);
 		station3.lierStation(station4, 48);
-		
-		//AFFICHAGE DES STATIONS
-		affichageStation(station1, station2, station3, station4);
-		
 
-		int declencheEvaporation = 0;
-		for (int i = 1; i <= nbIterations; i++) {
-			
-			//EFFECTUE L EVAPORATION DES PHE TOUTES LES 20 ITERATIONS
-			declencheEvaporation++;
-			if(declencheEvaporation == 20)
-			{
-				for (Arc key : Arc.ListeArc )
-				{
-					double phe = key.getPheromone();
-					phe = phe * (1 - tauxEvaporation);
-					key.setPheromone(Math.round(phe*100.0)/100.0);
-					System.out.println(key.getDepart()+" : " + key.getArrivee());
-					System.out.println("Nouveau taux : "+key.getPheromone());
-					System.out.println("\n---------------------------------------\n");
-				}
-				declencheEvaporation = 0;
-			}
-		}
 
 	}
 	
 	
-	public static void affichageStation(Station station1, Station station2, Station station3, Station station4){
+	public void affichageStation(Station station1, Station station2, Station station3, Station station4){
 		
+		//AFFICHAGE DES STATIONS
 		System.out.println("Nom de l\'arc : " + station1.getNom() + "\n");
 		System.out.println("Liste des arcs : \n");
 		for(Arc key: station1.getArcStation()){

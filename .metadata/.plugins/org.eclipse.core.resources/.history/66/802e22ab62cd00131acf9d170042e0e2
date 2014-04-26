@@ -41,10 +41,8 @@ public abstract class Station implements StationInterface{
 		ArcStation.add(arcStation);
 	}
 	
-	
-	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
-	public static final ArrayList<Station> ListeStation = new ArrayList<Station>();
+	public static final List<Station> list = new ArrayList<Station>();
 	{
-		Station.ListeStation.add(this);
+		Station.list.add(this);
 	}
 }

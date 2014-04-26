@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
-
 import Interfaces.*;
 
 public abstract class Arc implements ArcInterface{
@@ -10,8 +8,8 @@ public abstract class Arc implements ArcInterface{
 	//ATTRIBUTS
 	public String depart;
 	public String arrivee;
-	public double pheromone;
-	public int tempsParcours;    //En secondes
+	public int pheromone;
+	public int tempsParcours;
 	
 	
 	
@@ -26,10 +24,10 @@ public abstract class Arc implements ArcInterface{
 	
 	
 	//GETTERS AND SETTERS
-	public double getPheromone() {
+	public int getPheromone() {
 		return pheromone;
 	}
-	public void setPheromone(double pheromone) {
+	public void setPheromone(int pheromone) {
 		this.pheromone = pheromone;
 	}
 	public String getDepart() {
@@ -49,12 +47,5 @@ public abstract class Arc implements ArcInterface{
 	}
 	public void settempsParcours(int tempsParcours) {
 		this.tempsParcours = tempsParcours;
-	}
-	
-	
-	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
-	public static final ArrayList<Arc> ListeArc = new ArrayList<Arc>();
-	{
-		Arc.ListeArc.add(this);
 	}
 }

@@ -1,8 +1,10 @@
 package Controller;
 
-import Interfaces.StationInterface;
-import Model.Arc;
-import Model.Station;
+import java.awt.List;
+import java.util.ArrayList;
+
+import Interfaces.*;
+import Model.*;
 
 
 public class StationController extends Station implements StationInterface{
@@ -16,9 +18,15 @@ public class StationController extends Station implements StationInterface{
 	//CREER LES ARCS CORRESPONDANT ET IMPLEMENTE LA LISTE DES ARCS DE LA CLASS STATION
 	public void lierStation(Station arrivee, int tempsParcours){
 		//INITIALISATION DES PHEROMONES POUR CHAQUE ARC
-		int pheromone = 3;
+		int pheromone = 0;
 		Arc arc = new ArcController(this.getNom(), arrivee.getNom(), tempsParcours, pheromone);
 		this.setArcStation(arc);
 		arrivee.setArcStation(arc);
 	}
+	
+	public static final ArrayList<Station> list = new ArrayList<Station>();
+	{
+		Station.list.add(this);
+	}
+	
 }

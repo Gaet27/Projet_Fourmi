@@ -54,7 +54,7 @@ public class Main {
 				{
 					double phe = key.getPheromone();
 					phe = phe * (1 - tauxEvaporation);
-					key.setPheromone(Math.round(phe*100.0)/100.0);
+					key.setPheromone(Math.round(phe*100)/100);
 					System.out.println(key.getDepart()+" : " + key.getArrivee());
 					System.out.println("Nouveau taux : "+key.getPheromone());
 					System.out.println("\n---------------------------------------\n");

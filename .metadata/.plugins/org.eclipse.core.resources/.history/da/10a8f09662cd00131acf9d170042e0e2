@@ -1,7 +1,6 @@
 package Model;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import Interfaces.StationInterface;
@@ -39,12 +38,5 @@ public abstract class Station implements StationInterface{
 	}
 	public void setArcStation(Arc arcStation) {
 		ArcStation.add(arcStation);
-	}
-	
-	
-	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
-	public static final ArrayList<Station> ListeStation = new ArrayList<Station>();
-	{
-		Station.ListeStation.add(this);
 	}
 }
