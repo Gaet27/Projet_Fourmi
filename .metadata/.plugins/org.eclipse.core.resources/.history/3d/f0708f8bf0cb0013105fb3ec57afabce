@@ -32,10 +32,4 @@ public class Station {
 	public void setArcStation(ArrayList<Arc> arcStation) {
 		ArcStation = arcStation;
 	}
-	
-	public void lierStation(Station arrivee){
-		Arc arc = new Arc(this, arrivee);
-		this.getArcStation().add(arc);
-		arrivee.getArcStation().add(arc);
-	}
 }

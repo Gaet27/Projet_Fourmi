@@ -1,4 +1,5 @@
 package Iterations;
+import Controller.*;
 import Model.*;
 
 public class Main {
@@ -31,7 +32,7 @@ public class Main {
 		station4.nom = "Mirabeau";
 		station4.ArcStation.add(null);
 		
-		//station.lierStation(station2);
+		station2.
 
 	}
 

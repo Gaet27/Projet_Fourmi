@@ -1,0 +1,14 @@
+package Model;
+
+public interface Arcs {
+
+		Station depart;
+		Station arrivee;
+		int valeurArc;
+		int pheromone;
+		double tauxEvaporation;
+		int tempsParcours;
+		
+
+
+}

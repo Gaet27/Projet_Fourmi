@@ -1,4 +1,5 @@
 package Iterations;
+import Controller.*;
 import Model.*;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
 	final static int tempsIteration = 10;         //En secondes
 	
 	
-	public static void main(String[] args) {
+	public  void main(String[] args) {
 		
 		Station station = new Station();
 		station.id = 1;
@@ -31,7 +32,7 @@ public class Main {
 		station4.nom = "Mirabeau";
 		station4.ArcStation.add(null);
 		
-		//station.lierStation(station2);
+		StationController.lierStation(station2);
 
 	}
 
