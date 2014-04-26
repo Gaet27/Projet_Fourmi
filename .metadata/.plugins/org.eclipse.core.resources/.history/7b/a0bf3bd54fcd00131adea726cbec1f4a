@@ -1,0 +1,30 @@
+package Controller;
+
+import java.util.ArrayList;
+
+import Interfaces.MetroInterface;
+import Model.*;
+
+
+public class MetroController extends Metro implements MetroInterface {
+
+	public MetroController(Etat etat, int tempsTrajet, int nbStationVisitees,
+			HashSet<Station> stationsVisitees,
+			HashSet<Station> stationsAVisitees, int currentArcSize,
+			int currentOrigin, int currentDestination) {
+		super(etat, tempsTrajet, nbStationVisitees, stationsVisitees,
+				stationsAVisitees, currentArcSize, currentOrigin, currentDestination);
+	}
+	
+	public void trouverProchaineStation(){
+		
+	}
+	
+	public void evoluer(){
+		
+	}
+	
+	public void deposerPheromone(){
+		
+	}
+}

@@ -6,19 +6,19 @@ public abstract class Arc implements ArcInterface{
 
 	
 	//ATTRIBUTS
-	public Station depart;
-	public Station arrivee;
-	public int valeurArc;
+	public String depart;
+	public String arrivee;
 	public int pheromone;
-	public double tauxEvaporation;
 	public int tempsParcours;
 	
 	
 	
 	//CONSTRUCTOR
-	public Arc(Station station1, Station station2) {
+	public Arc(String station1, String station2, int tempsParcours, int pheromone) {
 		this.depart = station1;
 		this.arrivee = station2;
+		this.tempsParcours = tempsParcours;
+		this.pheromone = pheromone;
 	}
 	
 	
@@ -30,22 +30,16 @@ public abstract class Arc implements ArcInterface{
 	public void setPheromone(int pheromone) {
 		this.pheromone = pheromone;
 	}
-	public double getTauxEvaporation() {
-		return tauxEvaporation;
-	}
-	public void setTauxEvaporation(double tauxEvaporation) {
-		this.tauxEvaporation = tauxEvaporation;
-	}
-	public Station getDepart() {
+	public String getDepart() {
 		return depart;
 	}
-	public void setDepart(Station depart) {
+	public void setDepart(String depart) {
 		this.depart = depart;
 	}
-	public Station getArrivee() {
+	public String getArrivee() {
 		return arrivee;
 	}
-	public void setArrivee(Station arrivee) {
+	public void setArrivee(String arrivee) {
 		this.arrivee = arrivee;
 	}
 	public int gettempsParcours() {

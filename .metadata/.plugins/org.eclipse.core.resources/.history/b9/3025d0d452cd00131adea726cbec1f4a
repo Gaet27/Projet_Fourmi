@@ -1,0 +1,8 @@
+package Interfaces;
+
+
+public interface StationInterface {
+
+	//DECLARE FUNCTIONS
+	void lierStation(String arrivee);
+}

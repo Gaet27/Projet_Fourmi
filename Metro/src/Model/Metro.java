@@ -1,5 +1,6 @@
 package Model;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import Controller.*;
 import Interfaces.MetroInterface;
@@ -18,8 +19,8 @@ public abstract class Metro implements MetroInterface{
 	}
 	
 	public int nbStationVisitees;
-	public ArrayList<Station> stationsVisitees;
-	public ArrayList<Station> stationsAVisitees;
+	public HashSet<Station> stationsVisitees;
+	public HashSet<Station> stationsAVisitees;
 	
 	public int currentArcSize;    // longueur de l'arc actuellement parcouru
 	public int currentOrigin;        // première extrémité de l'arc actuellement parcouru 
@@ -28,7 +29,7 @@ public abstract class Metro implements MetroInterface{
 	
 	
 	//CONSTRUCTOR
-	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,ArrayList<Station> stationsVisitees,ArrayList<Station> stationsAVisitees, int currentArcSize, int currentOrigin, int currentDestination){
+	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,HashSet<Station> stationsVisitees,HashSet<Station> stationsAVisitees, int currentArcSize, int currentOrigin, int currentDestination){
 		this.etat = etat;
 		this.tempsTrajet = tempsTrajet;
 		this.nbStationVisitees = nbStationVisitees;
@@ -60,17 +61,17 @@ public abstract class Metro implements MetroInterface{
 	public void setNbStationVisitees(int nbStationVisitees) {
 		this.nbStationVisitees = nbStationVisitees;
 	}
-	public ArrayList<Station> getStationsVisitees() {
+	public HashSet<Station> getStationsVisitees() {
 		return stationsVisitees;
 	}
-	public void setStationsVisitees(ArrayList<Station> stationsVisitees) {
-		this.stationsVisitees = stationsVisitees;
+	public void setStationsVisitees(Station stationsVisitees) {
+		this.stationsVisitees.add(stationsVisitees);
 	}
-	public ArrayList<Station> getStationsAVisitees() {
+	public HashSet<Station> getStationsAVisitees() {
 		return stationsAVisitees;
 	}
-	public void setStationsAVisitees(ArrayList<Station> stationsAVisitees) {
-		this.stationsAVisitees = stationsAVisitees;
+	public void setStationsAVisitees(Station stationsAVisitees) {
+		this.stationsAVisitees.add(stationsAVisitees);
 	}
 	public long getCurrentArcSize() {
 		return currentArcSize;

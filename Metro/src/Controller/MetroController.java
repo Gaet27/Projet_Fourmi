@@ -1,16 +1,17 @@
 package Controller;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import Interfaces.MetroInterface;
-import Model.*;
+import Model.Metro;
+import Model.Station;
 
 
 public class MetroController extends Metro implements MetroInterface {
 
 	public MetroController(Etat etat, int tempsTrajet, int nbStationVisitees,
-			ArrayList<Station> stationsVisitees,
-			ArrayList<Station> stationsAVisitees, int currentArcSize,
+			HashSet<Station> stationsVisitees,
+			HashSet<Station> stationsAVisitees, int currentArcSize,
 			int currentOrigin, int currentDestination) {
 		super(etat, tempsTrajet, nbStationVisitees, stationsVisitees,
 				stationsAVisitees, currentArcSize, currentOrigin, currentDestination);
