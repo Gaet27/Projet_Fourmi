@@ -1,0 +1,117 @@
+package Iterations;
+import Controller.*;
+import Model.*;
+import Model.Metro.Etat;
+
+
+public class Main {
+
+	final static int nbMetro = 500;
+	final static int nbIterations = 200;
+	final static double tauxEvaporation = 0.02;
+	final static int tempsIteration = 10;         //En secondes
+	
+	
+	public static void main(String[] args) {
+		
+		//CREATION DE 4 STATIONS
+		Station station1 = new StationController();
+		station1.id = 1;
+		station1.nom = "Anvers";
+		
+		Station station2 = new StationController();
+		station2.id = 2;
+		station2.nom = "Liberté";
+		
+		Station station3 = new StationController();
+		station3.id = 3;
+		station3.nom = "Madeleine";
+		
+		Station station4 = new StationController();
+		station4.id = 4;
+		station4.nom = "Mirabeau";
+		
+		//LIAISONS DES 4 STATIONS
+		station1.lierStation(station2, 35);
+		station1.lierStation(station3, 42);
+		station2.lierStation(station4, 38);
+		station3.lierStation(station4, 48);
+		
+		//AFFICHAGE DES STATIONS
+		affichageStation(station1, station2, station3, station4);
+
+		int declencheEvaporation = 0;
+		for (int i = 1; i <= nbIterations; i++) {
+			
+			Metro metro = new MetroController();
+			
+			//EFFECTUE L EVAPORATION DES PHE TOUTES LES 20 ITERATIONS
+			declencheEvaporation++;
+			if(declencheEvaporation == 20)
+			{
+				for (Arc key : Arc.ListeArc )
+				{
+					double phe = key.getPheromone();
+					phe = phe * (1 - tauxEvaporation);
+					key.setPheromone(Math.round(phe*100.0)/100.0);
+					System.out.println(key.getDepart()+" : " + key.getArrivee());
+					System.out.println("Nouveau taux : "+key.getPheromone());
+					System.out.println("\n---------------------------------------\n");
+				}
+				declencheEvaporation = 0;
+			}
+			
+			//CREATIONS DE METROS
+			for (int j = 1; j <= nbMetro / nbIterations; j++)
+			{
+				metro.setCurrentArcSize(0);
+				metro.setCurrentDestination(0);
+				metro.setCurrentOrigin(0);
+				metro.setEtat(Etat.premierNoeud);
+				metro.setNbStationVisitees(0);
+				for (Station key : Station.ListeStation)
+				{
+					metro.setStationsAVisitees(key);
+				}
+				metro.setStationsVisitees(null);
+				metro.setTempsTrajet(0);
+			}
+			
+			
+		}
+
+	}
+	
+	
+	public static void affichageStation(Station station1, Station station2, Station station3, Station station4){
+		
+		System.out.println("Nom de l\'arc : " + station1.getNom() + "\n");
+		System.out.println("Liste des arcs : \n");
+		for(Arc key: station1.getArcStation()){
+			  System.out.println(key.getDepart()+" : " + key.getArrivee());
+	    }
+		System.out.println("\n---------------------------------------\n");
+		
+		System.out.println("Nom de l\'arc : " + station2.getNom() + "\n");
+		System.out.println("Liste des arcs : \n");
+		for(Arc key: station2.getArcStation()){
+			  System.out.println(key.getDepart()+" : " + key.getArrivee());
+	    }
+		System.out.println("\n---------------------------------------\n");
+		
+		System.out.println("Nom de l\'arc : " + station3.getNom() + "\n");
+		System.out.println("Liste des arcs : \n");
+		for(Arc key: station3.getArcStation()){
+			  System.out.println(key.getDepart()+" : " + key.getArrivee());
+	    }
+		System.out.println("\n---------------------------------------\n");
+		
+		System.out.println("Nom de l\'arc : " + station4.getNom() + "\n");
+		System.out.println("Liste des arcs : \n");
+		for(Arc key: station4.getArcStation()){
+			  System.out.println(key.getDepart()+" : " + key.getArrivee());
+	    }
+		System.out.println("\n---------------------------------------\n");
+	}
+
+}

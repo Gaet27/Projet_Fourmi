@@ -1,17 +1,20 @@
 package Iterations;
-import java.text.DecimalFormat;
+import java.util.HashSet;
 
-import Controller.StationController;
-import Model.Arc;
-import Model.Station;
+import Controller.*;
+import Interfaces.StationInterface;
+import Model.*;
+import Model.Metro.Etat;
 
 
 public class Main {
 
-	final static int nbFourmis = 500;
+	final static int nbMetro = 500;
 	final static int nbIterations = 200;
 	final static double tauxEvaporation = 0.02;
 	final static int tempsIteration = 10;         //En secondes
+	final static int stationDeDepart = 1;
+	final static int stationDeDestination = 4;
 	
 	
 	public static void main(String[] args) {
@@ -41,10 +44,13 @@ public class Main {
 		
 		//AFFICHAGE DES STATIONS
 		affichageStation(station1, station2, station3, station4);
-		
 
+		
+		//ITERATIONS
 		int declencheEvaporation = 0;
 		for (int i = 1; i <= nbIterations; i++) {
+			
+			Metro metro = new MetroController();
 			
 			//EFFECTUE L EVAPORATION DES PHE TOUTES LES 20 ITERATIONS
 			declencheEvaporation++;
@@ -61,6 +67,33 @@ public class Main {
 				}
 				declencheEvaporation = 0;
 			}
+			
+			//POUR CHAQUE METRO EXISTANT FAIRE
+			
+			//CREATIONS DE NOUVEAUX METROS
+			for (int j = 1; j <= nbMetro / nbIterations; j++)
+			{
+				metro.setstationDestination(stationDeDestination);
+				metro.setstationOrigin(stationDeDepart);
+				metro.setEtat(Etat.premierNoeud);
+				metro.setNbStationVisitees(0);
+				for (Station key : Station.ListeStation)
+				{
+					metro.setStationsAVisitees(key);
+				}
+				metro.setStationsVisitees(null);
+				
+				//A FINIR !!
+				StationController sc = new StationController();
+				sc.getArcStationId(stationDeDepart);
+				
+				//CREATION DE LA DESTINATION DU METRO
+				
+				metro.setCurrentArcSize(0);
+				metro.setTempsTrajet(0);
+			}
+			
+			
 		}
 
 	}

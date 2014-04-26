@@ -1,4 +1,5 @@
 package Model;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import Interfaces.MetroInterface;
@@ -7,7 +8,7 @@ import Interfaces.MetroInterface;
 public abstract class Metro implements MetroInterface{
 	
 	//ATTRIBUTS
-	public Etat etat;//à l'arret, en déplacement, retour
+	public Etat etat;
 	public int tempsTrajet;
 	
 	public enum Etat{
@@ -17,25 +18,30 @@ public abstract class Metro implements MetroInterface{
 	}
 	
 	public int nbStationVisitees;
-	public HashSet<Station> stationsVisitees;
-	public HashSet<Station> stationsAVisitees;
+	public HashSet<Station> stationsVisitees = new HashSet<Station>();
+	public HashSet<Station> stationsAVisitees = new HashSet<Station>();
 	
-	public int currentArcSize;    // longueur de l'arc actuellement parcouru
-	public int currentOrigin;        // première extrémité de l'arc actuellement parcouru 
-	public int currentDestination;    // seconde extrémité de l'arc actuellement parcouru
+	public int currentArcSize;           // Sa position en temps sur l'arc par rapport au temps du trajet
+	public int stationOrigin;            // Point de départ
+	public int stationCurrent;	         // Dernière station atteinte
+	public int stationDestination;       // Prochaine station à atteindre
+	public int stationDestinationFinal;  // Destination finale
 	
 	
 	
 	//CONSTRUCTOR
-	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,HashSet<Station> stationsVisitees,HashSet<Station> stationsAVisitees, int currentArcSize, int currentOrigin, int currentDestination){
+	public Metro(){
+	}
+	
+	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,HashSet<Station> stationsVisitees,HashSet<Station> stationsAVisitees, int currentArcSize, int stationOrigin, int stationDestination){
 		this.etat = etat;
 		this.tempsTrajet = tempsTrajet;
 		this.nbStationVisitees = nbStationVisitees;
 		this.stationsVisitees = stationsVisitees;
 		this.stationsAVisitees = stationsAVisitees;
 		this.currentArcSize = currentArcSize;
-		this.currentOrigin = currentOrigin;
-		this.currentDestination = currentDestination;
+		this.stationOrigin = stationOrigin;
+		this.stationDestination = stationDestination;
 	}
 	
 	
@@ -77,16 +83,36 @@ public abstract class Metro implements MetroInterface{
 	public void setCurrentArcSize(int currentArcSize) {
 		this.currentArcSize = currentArcSize;
 	}
-	public int getCurrentOrigin() {
-		return currentOrigin;
+	public int getstationOrigin() {
+		return stationOrigin;
 	}
-	public void setCurrentOrigin(int currentOrigin) {
-		this.currentOrigin = currentOrigin;
+	public void setstationOrigin(int stationOrigin) {
+		this.stationOrigin = stationOrigin;
 	}
-	public int getCurrentDestination() {
-		return currentDestination;
+	public int getstationDestination() {
+		return stationDestination;
 	}
-	public void setCurrentDestination(int currentDestination) {
-		this.currentDestination = currentDestination;
+	public void setstationDestination(int stationDestination) {
+		this.stationDestination = stationDestination;
+	}
+	public int getStationCurrent() {
+		return stationCurrent;
+	}
+	public void setStationCurrent(int stationCurrent) {
+		this.stationCurrent = stationCurrent;
+	}
+	public int getStationDestinationFinal() {
+		return stationDestinationFinal;
+	}
+	public void setStationDestinationFinal(int stationDestinationFinal) {
+		this.stationDestinationFinal = stationDestinationFinal;
+	}
+
+
+
+	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
+	public static final ArrayList<Metro> ListeMetro = new ArrayList<Metro>();
+	{
+		Metro.ListeMetro.add(this);
 	}
 }

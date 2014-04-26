@@ -1,0 +1,60 @@
+package Model;
+
+import java.util.ArrayList;
+
+import Interfaces.*;
+
+public abstract class Arc implements ArcInterface{
+
+	
+	//ATTRIBUTS
+	public Station depart;
+	public Station arrivee;
+	public double pheromone;
+	public int tempsParcours;    //En secondes
+	
+	
+	
+	//CONSTRUCTOR
+	public Arc(Station station1, Station station2, int tempsParcours, int pheromone) {
+		this.depart = station1;
+		this.arrivee = station2;
+		this.tempsParcours = tempsParcours;
+		this.pheromone = pheromone;
+	}
+	
+	
+	
+	//GETTERS AND SETTERS
+	public double getPheromone() {
+		return pheromone;
+	}
+	public void setPheromone(double pheromone) {
+		this.pheromone = pheromone;
+	}
+	public Station getDepart() {
+		return depart;
+	}
+	public void setDepart(Station depart) {
+		this.depart = depart;
+	}
+	public Station getArrivee() {
+		return arrivee;
+	}
+	public void setArrivee(Station arrivee) {
+		this.arrivee = arrivee;
+	}
+	public int gettempsParcours() {
+		return tempsParcours;
+	}
+	public void settempsParcours(int tempsParcours) {
+		this.tempsParcours = tempsParcours;
+	}
+	
+	
+	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
+	public static final ArrayList<Arc> ListeArc = new ArrayList<Arc>();
+	{
+		Arc.ListeArc.add(this);
+	}
+}
