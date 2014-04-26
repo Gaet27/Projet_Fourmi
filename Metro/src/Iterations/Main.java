@@ -1,4 +1,5 @@
 package Iterations;
+import Controller.*;
 import Model.*;
 
 public class Main {
@@ -11,28 +12,30 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Station station = new Station();
-		station.id = 1;
-		station.nom = "Anvers";
-		station.ArcStation.add(null);
+		//CREATION DE 4 STATIONS
+		Station station1 = new StationController();
+		station1.id = 1;
+		station1.nom = "Anvers";
 		
-		Station station2 = new Station();
+		Station station2 = new StationController();
 		station2.id = 2;
 		station2.nom = "Liberté";
-		station2.ArcStation.add(null);
 		
-		Station station3 = new Station();
+		Station station3 = new StationController();
 		station3.id = 3;
 		station3.nom = "Madeleine";
-		station3.ArcStation.add(null);
 		
-		Station station4 = new Station();
+		Station station4 = new StationController();
 		station4.id = 4;
 		station4.nom = "Mirabeau";
-		station4.ArcStation.add(null);
 		
-		//station.lierStation(station2);
+		//LIAISONS DES 4 STATIONS
+		station1.lierStation(station2);
+		station1.lierStation(station3);
+		station2.lierStation(station4);
+		station3.lierStation(station4);
 
+		
 	}
 
 }

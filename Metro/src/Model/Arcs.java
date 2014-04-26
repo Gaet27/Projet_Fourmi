@@ -1,9 +1,0 @@
-package Model;
-
-public interface Arcs {
-
-	
-		
-
-
-}

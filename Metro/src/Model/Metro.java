@@ -1,10 +1,14 @@
 package Model;
 import java.util.ArrayList;
 
-public class Metro {
+import Controller.*;
+
+
+public abstract class Metro implements MetroInterface{
 	
-	Etat etat;//à l'arret, en déplacement, retour
-	int tempsTrajet;
+	//ATTRIBUTS
+	public Etat etat;//à l'arret, en déplacement, retour
+	public int tempsTrajet;
 	
 	public enum Etat{
 		premierNoeud,
@@ -12,15 +16,17 @@ public class Metro {
 		rentre
 	}
 	
-	int nbStationVisitees;
-	ArrayList<Station> stationsVisitees;
-	ArrayList<Station> stationsAVisitees;
+	public int nbStationVisitees;
+	public ArrayList<Station> stationsVisitees;
+	public ArrayList<Station> stationsAVisitees;
+	
+	public int currentArcSize;    // longueur de l'arc actuellement parcouru
+	public int currentOrigin;        // première extrémité de l'arc actuellement parcouru 
+	public int currentDestination;    // seconde extrémité de l'arc actuellement parcouru
 	
 	
-	int currentArcSize;    // longueur de l'arc actuellement parcouru
-	int currentOrigin;        // première extrémité de l'arc actuellement parcouru 
-	int currentDestination;    // seconde extrémité de l'arc actuellement parcouru
 	
+	//CONSTRUCTOR
 	public Metro(Etat etat, int tempsTrajet, int nbStationVisitees,ArrayList<Station> stationsVisitees,ArrayList<Station> stationsAVisitees, int currentArcSize, int currentOrigin, int currentDestination){
 		this.etat = etat;
 		this.tempsTrajet = tempsTrajet;
@@ -32,6 +38,9 @@ public class Metro {
 		this.currentDestination = currentDestination;
 	}
 	
+	
+	
+	//GETTERS END SETTERS
 	public Etat getEtat() {
 		return etat;
 	}

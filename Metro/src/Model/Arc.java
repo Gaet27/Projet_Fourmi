@@ -1,20 +1,29 @@
 package Model;
 
-public class Arc {
+import interfaces.*;
 
-	Station depart;
-	Station arrivee;
-	int valeurArc;
-	int pheromone;
-	double tauxEvaporation;
-	int tempsParcours;
+public abstract class Arc implements ArcInterface{
+
 	
+	//ATTRIBUTS
+	public Station depart;
+	public Station arrivee;
+	public int valeurArc;
+	public int pheromone;
+	public double tauxEvaporation;
+	public int tempsParcours;
+	
+	
+	
+	//CONSTRUCTOR
 	public Arc(Station station1, Station station2) {
 		this.depart = station1;
 		this.arrivee = station2;
-
 	}
 	
+	
+	
+	//GETTERS AND SETTERS
 	public int getPheromone() {
 		return pheromone;
 	}

@@ -1,19 +1,25 @@
 package Model;
 
-import java.util.ArrayList;
-import Controller.StationController;
+import interfaces.StationInterface;
 
-public class Station {
+import java.util.HashSet;
+
+public abstract class Station implements StationInterface{
 	
+	
+	//ATRIBUTS
 	public int id;
 	public String nom;
-	public ArrayList<Arc> ArcStation;
+	public HashSet<Arc> ArcStation;  //HASHSET NE PERMET PAS LES DOUCBLONS
 	
-
+	
+	//CONSTRUCTOR
 	public Station() {
 
 	}
 
+	
+	//GETTERS AND SETTERS
 	public int getId() {
 		return id;
 	}
@@ -26,16 +32,10 @@ public class Station {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public ArrayList<Arc> getArcStation() {
+	public HashSet<Arc> getArcStation() {
 		return ArcStation;
 	}
-	public void setArcStation(ArrayList<Arc> arcStation) {
+	public void setArcStation(HashSet<Arc> arcStation) {
 		ArcStation = arcStation;
-	}
-	
-	public void lierStation(Station arrivee){
-		Arc arc = new Arc(this, arrivee);
-		this.getArcStation().add(arc);
-		arrivee.getArcStation().add(arc);
 	}
 }
