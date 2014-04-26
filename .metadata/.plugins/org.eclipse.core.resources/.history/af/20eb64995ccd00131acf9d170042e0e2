@@ -41,28 +41,7 @@ public class Main {
 		System.out.println("Nom de l\'arc : " + station1.getNom() + "\n");
 		System.out.println("Liste des arcs : \n");
 		for(Arc key: station1.getArcStation()){
-			  System.out.println(key.getDepart()+" : " + key.getArrivee());
-	    }
-		System.out.println("\n---------------------------------------\n");
-		
-		System.out.println("Nom de l\'arc : " + station2.getNom() + "\n");
-		System.out.println("Liste des arcs : \n");
-		for(Arc key: station2.getArcStation()){
-			  System.out.println(key.getDepart()+" : " + key.getArrivee());
-	    }
-		System.out.println("\n---------------------------------------\n");
-		
-		System.out.println("Nom de l\'arc : " + station3.getNom() + "\n");
-		System.out.println("Liste des arcs : \n");
-		for(Arc key: station3.getArcStation()){
-			  System.out.println(key.getDepart()+" : " + key.getArrivee());
-	    }
-		System.out.println("\n---------------------------------------\n");
-		
-		System.out.println("Nom de l\'arc : " + station4.getNom() + "\n");
-		System.out.println("Liste des arcs : \n");
-		for(Arc key: station4.getArcStation()){
-			  System.out.println(key.getDepart()+" : " + key.getArrivee());
+			  System.out.println(key.getDepart());
 	    }
 		System.out.println("\n---------------------------------------\n");
 	}
