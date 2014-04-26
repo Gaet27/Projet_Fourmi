@@ -1,0 +1,14 @@
+package Controller;
+
+import Model.Arc;
+import Model.Station;
+
+public class StationController extends Station implements StationInterface{
+
+	public void lierStation(Station arrivee){
+		ArcController arc = new ArcController(this, arrivee);
+		this.getArcStation().add(arc);
+		arrivee.getArcStation().add(arc);
+	}
+	
+}

@@ -1,0 +1,38 @@
+package Iterations;
+import Model.*;
+
+public class Main {
+
+	final static int nbFourmis = 500;
+	final static int nbIterations = 200;
+	final static double tauxEvaporation = 0.02;
+	final static int tempsIteration = 10;         //En secondes
+	
+	
+	public static void main(String[] args) {
+		
+		Station station = new Station();
+		station.id = 1;
+		station.nom = "Anvers";
+		station.ArcStation.add(null);
+		
+		Station station2 = new Station();
+		station2.id = 2;
+		station2.nom = "Liberté";
+		station2.ArcStation.add(null);
+		
+		Station station3 = new Station();
+		station3.id = 3;
+		station3.nom = "Madeleine";
+		station3.ArcStation.add(null);
+		
+		Station station4 = new Station();
+		station4.id = 4;
+		station4.nom = "Mirabeau";
+		station4.ArcStation.add(null);
+		
+		//station.lierStation(station2);
+
+	}
+
+}

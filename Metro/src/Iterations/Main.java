@@ -35,7 +35,10 @@ public class Main {
 		station2.lierStation(station4);
 		station3.lierStation(station4);
 
-		
+		//AFFICHAGE DES ITERATIONS
+		System.out.println(station1.getNom());
+		System.out.println(station1.getArcStation());
+		System.out.println("\n---------------------------------------\n");
 	}
 
 }

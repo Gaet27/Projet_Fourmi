@@ -1,0 +1,9 @@
+package Controller;
+
+import Model.Station;
+
+public interface StationInterface {
+
+	//FUNCTIONS
+	void lierStation(Station arrivee);
+}

@@ -1,0 +1,7 @@
+package Controller;
+
+public interface ArcInterface {
+	
+	public void calculRatio()
+	
+}

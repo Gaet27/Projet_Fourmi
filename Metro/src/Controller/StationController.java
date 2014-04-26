@@ -1,6 +1,6 @@
 package Controller;
 
-import interfaces.*;
+import Interfaces.*;
 import Model.*;
 
 

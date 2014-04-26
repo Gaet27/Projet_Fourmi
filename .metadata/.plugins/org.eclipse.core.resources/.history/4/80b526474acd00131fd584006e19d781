@@ -1,0 +1,12 @@
+package Controller;
+
+public interface MetroInterface {
+
+	//FUNCTIONS
+	public void trouverProchaineStation();
+	
+	public void evoluer();
+
+	public void deposerPheromone();
+	
+}

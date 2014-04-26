@@ -1,6 +1,6 @@
 package Model;
 
-import interfaces.*;
+import Interfaces.*;
 
 public abstract class Arc implements ArcInterface{
 

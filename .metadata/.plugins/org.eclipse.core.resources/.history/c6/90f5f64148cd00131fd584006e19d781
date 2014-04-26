@@ -1,0 +1,14 @@
+package Controller;
+
+import Model.Arc;
+import Model.Station;
+
+public class ArcController extends Arc implements ArcInterface{
+
+
+	//IMPLEMENTS FUNTIONS
+	public void calculRatio(){
+		
+	}
+
+}

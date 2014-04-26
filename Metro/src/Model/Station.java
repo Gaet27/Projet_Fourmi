@@ -1,8 +1,9 @@
 package Model;
 
-import interfaces.StationInterface;
 
 import java.util.HashSet;
+
+import Interfaces.StationInterface;
 
 public abstract class Station implements StationInterface{
 	

@@ -1,0 +1,21 @@
+package Controller;
+
+import Model.Arc;
+import Model.Station;
+
+public class ArcController extends Arc{
+
+	public ArcController(){
+		
+	}
+	
+	public ArcController(Station station1, Station station2) {
+		super(station1, station2);
+
+	}
+
+	public void calculRatio(){
+		
+	}
+
+}

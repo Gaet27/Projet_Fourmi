@@ -1,0 +1,9 @@
+package interfaces;
+
+import Model.Station;
+
+public interface StationInterface {
+
+	//DECLARE FUNCTIONS
+	void lierStation(Station arrivee);
+}

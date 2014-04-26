@@ -1,0 +1,21 @@
+package Controller;
+
+import Model.*;
+
+
+public class StationController extends Station implements StationInterface{
+
+	
+	//IMPLEMENTS FUNTIONS
+	public StationController() {
+		super();
+	}
+	
+	@Override
+	public void lierStation(Station arrivee){
+		ArcController arc = new ArcController(this, arrivee);
+		this.getArcStation().add(arc);
+		arrivee.getArcStation().add(arc);
+	}
+	
+}

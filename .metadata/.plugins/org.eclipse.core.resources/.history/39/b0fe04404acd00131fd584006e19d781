@@ -1,0 +1,8 @@
+package interfaces;
+
+public interface ArcInterface {
+	
+	//FUNCTIONS
+	public void calculRatio();
+	
+}

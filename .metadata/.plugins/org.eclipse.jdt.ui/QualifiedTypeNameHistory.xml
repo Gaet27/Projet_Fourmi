@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="Model.Station"/>
+<fullyQualifiedTypeName name="Controller.ArcInterface"/>
+<fullyQualifiedTypeName name="Controller.MetroInterface"/>
+<fullyQualifiedTypeName name="Controller.StationInterface"/>
 <fullyQualifiedTypeName name="Controller.StationController"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
 </qualifiedTypeNameHistroy>
