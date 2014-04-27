@@ -85,8 +85,7 @@ public class Main {
 				
 				//A FINIR !!
 				StationController sc = new StationController();
-				HashSet<Arc> listeArcStationDepart = sc.getArcStationId(stationDeDepart);
-				
+				sc.getArcStationId(stationDeDepart);
 				
 				//CREATION DE LA DESTINATION DU METRO
 				

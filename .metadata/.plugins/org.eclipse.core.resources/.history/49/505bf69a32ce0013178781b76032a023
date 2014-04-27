@@ -37,7 +37,6 @@ public class StationController extends Station implements StationInterface{
 		return ArcStation;
 	}
 	
-	
 	//RECUPERE L'ARC EN FONCTION DE L'ID STATION1 ET L'ID STATION2
 	public HashSet<Arc> getArcsBetweenStations(HashSet<Station> stations) {
 		HashSet<Arc> ListeArcBetweenStation  = new HashSet<Arc>();
