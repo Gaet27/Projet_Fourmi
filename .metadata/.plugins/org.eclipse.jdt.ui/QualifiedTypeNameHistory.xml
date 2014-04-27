@@ -4,8 +4,15 @@
 <fullyQualifiedTypeName name="Controller.ArcInterface"/>
 <fullyQualifiedTypeName name="Controller.MetroInterface"/>
 <fullyQualifiedTypeName name="Controller.StationInterface"/>
-<fullyQualifiedTypeName name="Controller.StationController"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
+<fullyQualifiedTypeName name="java.util.ListIterator"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+<fullyQualifiedTypeName name="Model.Metro.Etat"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Controller.StationController"/>
+<fullyQualifiedTypeName name="Interfaces.StationInterface"/>
 </qualifiedTypeNameHistroy>
