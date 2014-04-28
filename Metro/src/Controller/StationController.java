@@ -21,7 +21,7 @@ public class StationController extends Station implements StationInterface{
 		int pheromone = 0;
 		Arc arc = new ArcController(this.getNom(), arrivee.getNom(), tempsParcours, pheromone);
 		this.setArcStation(arc);
-		arrivee.setArcStation(arc);
+		//arrivee.setArcStation(arc);
 	}
 	
 	
@@ -35,4 +35,16 @@ public class StationController extends Station implements StationInterface{
 		}
 		return ArcStation;
 	}
+	
+	public Station getStationId(String id) {
+		Station station = new StationController();
+		for (Station key : Station.ListeStation)
+		{
+			if(id == key.getNom()){
+				station = key;
+			}
+		}
+		return station;
+	}
+	
 }

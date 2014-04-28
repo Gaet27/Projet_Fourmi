@@ -73,24 +73,57 @@ public class Main {
 			//CREATIONS DE NOUVEAUX METROS
 			for (int j = 1; j <= nbMetro / nbIterations; j++)
 			{
-				metro.setstationDestination(stationDeDestination);
-				metro.setstationOrigin(stationDeDepart);
-				metro.setEtat(Etat.premierNoeud);
-				metro.setNbStationVisitees(0);
-				for (Station key : Station.ListeStation)
-				{
-					metro.setStationsAVisitees(key);
+//				metro.setstationDestination(stationDeDestination);
+//				metro.setstationOrigin(stationDeDepart);
+//				metro.setEtat(Etat.premierNoeud);
+//				metro.setNbStationVisitees(0);
+//				for (Station key : Station.ListeStation)
+//				{
+//					metro.setStationsAVisitees(key);
+//				}
+//				metro.setStationsVisitees(null);
+//				
+//				//A FINIR !!
+//				StationController sc = new StationController();
+//				sc.getArcStationId(stationDeDepart);
+//				
+//				//CREATION DE LA DESTINATION DU METRO
+//				
+//				metro.setCurrentArcSize(0);
+//				metro.settempsTrajetArc(0);
+			}
+			
+			switch (metro.etat) {
+			case premierNoeud:
+				break;
+			case cherche:
+				if (metro.currentArcSize >= metro.tempsTrajetArc) {
+					metro.stationCurrent = metro.stationDestination;
+				}else{
+					metro.currentArcSize += 10;
+					if (metro.stationDestinationFinal == metro.stationCurrent) {
+						HashSet<Arc> arcsParcourus = new HashSet<Arc>();
+						arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
+						for (Arc arc : arcsParcourus) {
+							arc.setPheromone(arc.getPheromone()+1);
+						}
+					}
+						metro.etat = Etat.rentre;
+						
+					// On envoi le metro vers une nouvelle station
+						Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
+						metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
+						metro.stationDestination = prochaineStation;
 				}
-				metro.setStationsVisitees(null);
 				
-				//A FINIR !!
-				StationController sc = new StationController();
-				sc.getArcStationId(stationDeDepart);
+				//vérifier les SI et ALORS
+				break;
+			case rentre:
+				break;
+			}
+			if (metro.getEtat() == Etat.cherche) {
 				
-				//CREATION DE LA DESTINATION DU METRO
 				
-				metro.setCurrentArcSize(0);
-				metro.setTempsTrajet(0);
 			}
 			
 			
