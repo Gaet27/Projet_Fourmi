@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import Interfaces.MetroInterface;
-import Model.Arc;
-import Model.Metro;
-import Model.Station;
+import Model.*;
+import Controller.*;
+
 
 
 public class MetroController extends Metro implements MetroInterface {
@@ -99,7 +99,6 @@ public class MetroController extends Metro implements MetroInterface {
 			}
 		}
 		return arc;
-		
 	}
 	
 }

@@ -94,34 +94,40 @@ public class Main {
 			}
 			
 			switch (metro.etat) {
+			
 			case premierNoeud:
 				break;
+				
 			case cherche:
-				if (metro.currentArcSize >= metro.tempsTrajetArc) {
+				
+				metro.currentArcSize += 10;
+				if (metro.currentArcSize >= metro.tempsTrajetArc) 
+				{
 					metro.stationCurrent = metro.stationDestination;
-				}else{
-					metro.currentArcSize += 10;
-					if (metro.stationDestinationFinal == metro.stationCurrent) {
-						HashSet<Arc> arcsParcourus = new HashSet<Arc>();
-						arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
-						for (Arc arc : arcsParcourus) {
-							arc.setPheromone(arc.getPheromone()+1);
-						}
-					}
-						metro.etat = Etat.rentre;
-						
+					
 					// On envoi le metro vers une nouvelle station
-						Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
-						metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
-						metro.stationDestination = prochaineStation;
+					Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
+					metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
+					metro.stationDestination = prochaineStation;
 				}
-				//vérifier les SI et ALORS
+			
+				
+				if (metro.stationDestinationFinal == metro.stationCurrent)
+				{
+					HashSet<Arc> arcsParcourus = new HashSet<Arc>();
+					arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
+					for (Arc arc : arcsParcourus) {
+						arc.setPheromone(arc.getPheromone()+1);
+					}
+					metro.etat = Etat.rentre;
+				}
+				
 				break;
+				
 			case rentre:
 				break;
 			}
 		}
-
 	}
 	
 	

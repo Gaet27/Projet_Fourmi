@@ -26,18 +26,19 @@ public class StationController extends Station implements StationInterface{
 	
 	
 	//RECUPERE LA LISTE DES ARCS EN FONCTIONS DE L'ID DE LA	STATION
-	public HashSet<Arc> getArcStationId(int id) {
+	public HashSet<Arc> getArcStationId(String id) {
 		
 		for (Station key : Station.ListeStation)
 		{
-			if(id == key.getId()){
+			if(id == key.getNom()){
 				ArcStation = key.getArcStation();
 			}
 		}
 		return ArcStation;
 	}
 	
-<<<<<<< HEAD
+	
+	//RETOURNE UNE STATION EN FONCTION DE SON ID
 	public Station getStationId(String id) {
 		Station station = new StationController();
 		for (Station key : Station.ListeStation)
@@ -48,43 +49,4 @@ public class StationController extends Station implements StationInterface{
 		}
 		return station;
 	}
-	
-=======
-	
-	//RECUPERE L'ARC EN FONCTION DE L'ID STATION1 ET L'ID STATION2
-	public HashSet<Arc> getArcsBetweenStations(HashSet<Station> stations) {
-		HashSet<Arc> ListeArcBetweenStation  = new HashSet<Arc>();
-
-		int j = 1;
-		int i = 1;
-		String Station2 = null;
-		
-		for (Station key : stations)
-		{
-			//RECUPERE DE 2 EN 2
-			for (Station keyy : stations){
-			    Station2 = keyy.getNom();
-				if(j >= i+1)
-				{
-					break;
-				}
-				j++;
-			}
-			i++;
-			
-			String Station1 = key.getNom();
-		
-			for (Arc key2 : key.getArcStation())
-			{
-				if(key2.getDepart() ==  Station1 && key2.getArrivee() == Station2)
-				{
-					ListeArcBetweenStation .add(key2);
-				}
-			}
-		}
-		return ListeArcBetweenStation ;
-	}
-	
-	
->>>>>>> b9e0dbe114820f4143a4ba74268c311ab941088c
 }

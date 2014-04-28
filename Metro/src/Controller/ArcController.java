@@ -15,8 +15,4 @@ public class ArcController extends Arc implements ArcInterface{
 		super();
 	}
 
-	public void calculRatio(){
-		
-	}
-
 }

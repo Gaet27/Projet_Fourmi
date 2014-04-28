@@ -27,10 +27,6 @@ public abstract class Arc implements ArcInterface{
 		this.pheromone = pheromone;
 	}
 	
-	public Arc(){
-		
-	}
-	
 	
 	//GETTERS AND SETTERS
 	public double getPheromone() {
