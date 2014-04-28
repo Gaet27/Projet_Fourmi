@@ -21,7 +21,7 @@ public class StationController extends Station implements StationInterface{
 		int pheromone = 0;
 		Arc arc = new ArcController(this.getNom(), arrivee.getNom(), tempsParcours, pheromone);
 		this.setArcStation(arc);
-		//arrivee.setArcStation(arc);
+		arrivee.setArcStation(arc);
 	}
 	
 	
@@ -36,20 +36,6 @@ public class StationController extends Station implements StationInterface{
 		}
 		return ArcStation;
 	}
-	
-<<<<<<< HEAD
-	public Station getStationId(String id) {
-		Station station = new StationController();
-		for (Station key : Station.ListeStation)
-		{
-			if(id == key.getNom()){
-				station = key;
-			}
-		}
-		return station;
-	}
-	
-=======
 	
 	//RECUPERE L'ARC EN FONCTION DE L'ID STATION1 ET L'ID STATION2
 	public HashSet<Arc> getArcsBetweenStations(HashSet<Station> stations) {
@@ -86,5 +72,4 @@ public class StationController extends Station implements StationInterface{
 	}
 	
 	
->>>>>>> b9e0dbe114820f4143a4ba74268c311ab941088c
 }

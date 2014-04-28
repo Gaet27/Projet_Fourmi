@@ -16,10 +16,6 @@ public abstract class Arc implements ArcInterface{
 	
 	
 	//CONSTRUCTOR
-	public Arc(){
-		
-	}
-	
 	public Arc(String station1, String station2, int tempsParcours, int pheromone) {
 		this.depart = station1;
 		this.arrivee = station2;
@@ -27,9 +23,6 @@ public abstract class Arc implements ArcInterface{
 		this.pheromone = pheromone;
 	}
 	
-	public Arc(){
-		
-	}
 	
 	
 	//GETTERS AND SETTERS
