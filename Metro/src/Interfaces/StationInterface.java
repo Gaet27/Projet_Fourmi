@@ -1,5 +1,6 @@
 package Interfaces;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import Model.Arc;
@@ -11,4 +12,5 @@ public interface StationInterface {
 	void lierStation(Station arrivee, int tempsParcours);
 	HashSet<Arc> getArcStationId(String id);
 	Station getStationId(String id);
+	static final ArrayList<Station> ListeStation = new ArrayList<Station>();
 }

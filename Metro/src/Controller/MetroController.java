@@ -74,17 +74,24 @@ public class MetroController extends Metro implements MetroInterface {
 	
 	//On indique la prochaine station à visiter
 	public Station findNextSearchStation(Station currentStation){
-		ArrayList<Arc> ListeArcPheromone = new ArrayList();
+		ArrayList<Arc> ListeArcPheromone = new ArrayList<Arc>();
 		for (Arc arcStation : currentStation.getArcStation()) {
-			for (int i = 0; i < arcStation.getPheromone()*10; i++) {
+			
+			int phe = 0;
+			if (arcStation.getPheromone() == 0)
+			{
+				 phe = 1;
+			}
+			
+			for (int i = 0; i < (arcStation.getPheromone()*10)+phe; i++) {
 				ListeArcPheromone.add(arcStation);
 			}			
 		}
-		int nombreAleatoire = (int)(Math.random() * (ListeArcPheromone.size() - 1)) + 1;
+		int nombreAleatoire = (int)(Math.random() * (ListeArcPheromone.size() - 0)) + 0;
 		Arc arc = ListeArcPheromone.get(nombreAleatoire);
 		
 		Station prochaineStation = new StationController();
-		prochaineStation.getStationId(arc.getArrivee());
+		prochaineStation = prochaineStation.getStationId(arc.getArrivee());
 		
 		return prochaineStation;
 	}
@@ -99,6 +106,13 @@ public class MetroController extends Metro implements MetroInterface {
 			}
 		}
 		return arc;
+	}
+	
+	
+	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
+	public static final ArrayList<Metro> ListeMetro = new ArrayList<Metro>();
+	{
+		ListeMetro.add(this);
 	}
 	
 }

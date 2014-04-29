@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-
-import Interfaces.*;
+import Interfaces.ArcInterface;
 
 public abstract class Arc implements ArcInterface{
 
@@ -52,12 +50,5 @@ public abstract class Arc implements ArcInterface{
 	}
 	public void settempsParcours(int tempsParcours) {
 		this.tempsParcours = tempsParcours;
-	}
-	
-	
-	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
-	public static final ArrayList<Arc> ListeArc = new ArrayList<Arc>();
-	{
-		Arc.ListeArc.add(this);
 	}
 }

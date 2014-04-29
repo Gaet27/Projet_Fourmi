@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Interfaces.ArcInterface;
 import Model.*;
 
@@ -14,5 +16,11 @@ public class ArcController extends Arc implements ArcInterface{
 	public ArcController(){
 		super();
 	}
-
+	
+	
+	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
+	public static final ArrayList<Arc> ListeArc = new ArrayList<Arc>();
+	{
+		ListeArc.add(this);
+	}
 }

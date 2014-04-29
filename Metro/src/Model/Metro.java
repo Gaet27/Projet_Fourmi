@@ -1,5 +1,4 @@
 package Model;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import Interfaces.MetroInterface;
@@ -125,13 +124,5 @@ public abstract class Metro implements MetroInterface{
 
 	public void setStationDestinationFinal(Station stationDestinationFinal) {
 		this.stationDestinationFinal = stationDestinationFinal;
-	}
-	
-	
-	
-	//LISTE DE TOUTES LES INSTANCES DE CETTE CLASSE
-	public static final ArrayList<Metro> ListeMetro = new ArrayList<Metro>();
-	{
-		Metro.ListeMetro.add(this);
 	}
 }
