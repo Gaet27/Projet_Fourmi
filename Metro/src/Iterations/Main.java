@@ -8,7 +8,7 @@ import Model.Metro.Etat;
 
 public class Main {
 
-	final static int nbMetro = 500;
+	final static int nbMetro = 2000;
 	final static int nbIterations = 200;
 	final static double tauxEvaporation = 0.02;
 	final static int tempsIteration = 10;         //En secondes
@@ -18,8 +18,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Station station = new StationController();
+		Station stationDepart = new StationController();
+		Station prochaineStation = new StationController();
 		Metro metro = new MetroController();
+		Arc arc = new ArcController();
 		
 		//CREATION DES STATIONS ET DES ARCS
 		creationStation();
@@ -27,11 +29,11 @@ public class Main {
 		//ITERATIONS
 		for (int i = 1; i <= nbIterations; i++) {
 			
+			//CREER LES NOUVEAUX METROS
+			premierNoeud(metro, stationDepart, prochaineStation, arc);
+			
 			//EFFECTUE L EVAPORATION DES PHE TOUTES LES 20 ITERATIONS
 			evaporation();
-			
-			//CREER LES NOUVEAUX METROS
-			premierNoeud(metro, station);
 				
 			switch (metro.etat) {
 			
@@ -39,7 +41,7 @@ public class Main {
 				break;
 				
 			case cherche:
-				cherche(metro, station);
+				cherche(metro, stationDepart, prochaineStation);
 				break;
 				
 			case rentre:
@@ -108,30 +110,41 @@ public class Main {
 			  System.out.println(key.getDepart()+" : " + key.getArrivee());
 	    }
 		System.out.println("\n---------------------------------------\n");
+		
+		//TEMPORAIRE POUR VOIR LA CREATIO DES STATIONS
+		try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
 	
-	public static void premierNoeud(Metro metro, Station station){
+	public static void premierNoeud(Metro metro, Station stationDepart, Station prochaineStation, Arc arc){
 		
 		//CREATIONS DE NOUVEAUX METROS
 		for (int j = 1; j <= nbMetro / nbIterations; j++)
 		{
-			station = station.getStationId(stationDeDepart);
+			stationDepart = stationDepart.getStationId(stationDeDepart);
 			for (Station key : StationController.ListeStation)
 			{
 				if(key.getNom() != stationDeDepart)
 				metro.setStationsAVisitees(key);
 			}
-			metro.setStationsVisitees(station);
-			metro.setStationOrigin(station);
-			metro.setStationCurrent(station);
-			station = metro.findNextSearchStation(station);
-			metro.setStationDestination(station);
-			station = station.getStationId(stationDeDestinationFinale);
-			metro.setStationDestinationFinal(station);
+			metro.setStationsVisitees(stationDepart);//
+			metro.setStationOrigin(stationDepart);
+			metro.setStationCurrent(stationDepart);//
+			prochaineStation = metro.findNextSearchStation(stationDepart);
+			arc = metro.findArcByStationId(stationDepart, prochaineStation);
+			metro.setTempsTrajetArc(arc.gettempsParcours());
+			metro.setStationDestination(prochaineStation);//
+			
+			//L'OBJET prochaineStation EST MODIFIE POUR QUE METRO OBTIENNE SA DESTINATION FINALE
+			prochaineStation = prochaineStation.getStationId(stationDeDestinationFinale);
+			metro.setStationDestinationFinal(prochaineStation);
+			
 			metro.setEtat(Etat.premierNoeud);
-			metro.setTempsTrajetArc(45);//A completer
 			metro.setNbStationVisitees(1);
 			metro.setCurrentArcSize(10);
 			
@@ -140,7 +153,7 @@ public class Main {
 			System.out.println("Dernière station visitée : " + metro.getStationCurrent().getNom());
 			System.out.println("Nombre de stations visitées : " + metro.getNbStationVisitees());
 			System.out.println("Prochaine destination de la station : " + metro.getStationDestination().getNom());
-			System.out.println("Point de départ :" + metro.getStationOrigin().getNom());
+			System.out.println("Point de départ : " + metro.getStationOrigin().getNom());
 			System.out.println("Destination finale : " + metro.getStationDestinationFinal().getNom());
 			System.out.println("\n---------------------------------------\n");
 		}
@@ -148,7 +161,8 @@ public class Main {
 	
 	
 	
-	public static void cherche(Metro metro, Station station){
+	public static void cherche(Metro metro, Station stationDepart, Station prochaineStation){
+		
 		
 		if (metro.currentArcSize >= metro.tempsTrajetArc) 
 		{
@@ -169,31 +183,36 @@ public class Main {
 				metro.setCurrentArcSize(residuTemps);
 				
 				// On envoi le metro vers une nouvelle station
-				Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
+				prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
 				metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
 				metro.setStationDestination(prochaineStation);
 			}			
 		}else{
 			metro.currentArcSize += 10;
 		}
-		
-		
 	}
 	
 	
 	
 	public static void evaporation(){
 	
-		for (Arc key : Arc.ListeArc )
+		for (Arc key : ArcController.ListeArc)
 		{
-			double phe = key.getPheromone();
-			phe = phe * (1 - tauxEvaporation);
-			phe = Math.rint(10 * phe)/10;
-			key.setPheromone(phe);
-			System.out.println(key.getDepart()+" : " + key.getArrivee());
-			System.out.println("Nouveau taux : "+key.getPheromone());
-			System.out.println("\n---------------------------------------\n");
+			if(key.getDepart() != null)
+			{
+				double phe = key.getPheromone();
+				phe = phe * (1 - tauxEvaporation);
+				phe = Math.floor(10 * phe)/10;
+				key.setPheromone(phe);
+				System.out.println(key.getDepart()+" : " + key.getArrivee());
+				System.out.println("Nouveau taux : "+key.getPheromone());
+				System.out.println("\n---------------------------------------\n");
+			}
 		}
-
+		try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
