@@ -150,27 +150,34 @@ public class Main {
 	
 	public static void cherche(Metro metro, Station station){
 		
-		metro.currentArcSize += 10;
 		if (metro.currentArcSize >= metro.tempsTrajetArc) 
 		{
+			metro.setStationsVisitees(metro.stationCurrent);
+			metro.stationsAVisitees.remove(metro.stationCurrent);
 			metro.stationCurrent = metro.stationDestination;
-			
-			// On envoi le metro vers une nouvelle station
-			Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
-			metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
-			metro.stationDestination = prochaineStation;
+			if (metro.stationCurrent == metro.stationDestinationFinal)
+			{
+				HashSet<Arc> arcsParcourus = new HashSet<Arc>();
+				arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
+				for (Arc arc : arcsParcourus) {
+					arc.setPheromone(arc.getPheromone()+1);
+				}
+				metro.setEtat(Etat.rentre);
+			}else{
+				//On stocke le déplacement en trop sur un arc pour le ré-affecter sur le nouvel arc
+				int residuTemps = metro.tempsTrajetArc - metro.currentArcSize;
+				metro.setCurrentArcSize(residuTemps);
+				
+				// On envoi le metro vers une nouvelle station
+				Station prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
+				metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
+				metro.setStationDestination(prochaineStation);
+			}			
+		}else{
+			metro.currentArcSize += 10;
 		}
-	
 		
-		if (metro.stationDestinationFinal == metro.stationCurrent)
-		{
-			HashSet<Arc> arcsParcourus = new HashSet<Arc>();
-			arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
-			for (Arc arc : arcsParcourus) {
-				arc.setPheromone(arc.getPheromone()+1);
-			}
-			metro.etat = Etat.rentre;
-		}
+		
 	}
 	
 	
