@@ -8,7 +8,7 @@ import Model.Metro.Etat;
 
 public class Main {
 
-	final static int nbMetro = 2000;
+	final static int nbMetro = 500;
 	final static int nbIterations = 200;
 	final static double tauxEvaporation = 0.02;
 	final static int tempsIteration = 10;         //En secondes
@@ -29,11 +29,11 @@ public class Main {
 		//ITERATIONS
 		for (int i = 1; i <= nbIterations; i++) {
 			
-			//CREER LES NOUVEAUX METROS
-			premierNoeud(metro, stationDepart, prochaineStation, arc);
-			
 			//EFFECTUE L EVAPORATION DES PHE TOUTES LES 20 ITERATIONS
 			evaporation();
+			
+			//CREER LES NOUVEAUX METROS
+			premierNoeud(metro, stationDepart, prochaineStation, arc);
 				
 			switch (metro.etat) {
 			
@@ -132,13 +132,13 @@ public class Main {
 				if(key.getNom() != stationDeDepart)
 				metro.setStationsAVisitees(key);
 			}
-			metro.setStationsVisitees(stationDepart);//
+			metro.setStationsVisitees(stationDepart);
 			metro.setStationOrigin(stationDepart);
-			metro.setStationCurrent(stationDepart);//
+			metro.setStationCurrent(stationDepart);
 			prochaineStation = metro.findNextSearchStation(stationDepart);
 			arc = metro.findArcByStationId(stationDepart, prochaineStation);
 			metro.setTempsTrajetArc(arc.gettempsParcours());
-			metro.setStationDestination(prochaineStation);//
+			metro.setStationDestination(prochaineStation);
 			
 			//L'OBJET prochaineStation EST MODIFIE POUR QUE METRO OBTIENNE SA DESTINATION FINALE
 			prochaineStation = prochaineStation.getStationId(stationDeDestinationFinale);
