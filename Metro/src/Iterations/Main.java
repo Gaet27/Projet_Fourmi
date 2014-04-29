@@ -8,7 +8,7 @@ import Model.Metro.Etat;
 
 public class Main {
 
-	final static int nbMetro = 2000;
+	final static int nbMetro = 500;
 	final static int nbIterations = 200;
 	final static double tauxEvaporation = 0.02;
 	final static int tempsIteration = 10;         //En secondes
@@ -38,10 +38,11 @@ public class Main {
 			switch (metro.etat) {
 			
 			case premierNoeud:
+				demarrerMetro(metro);
 				break;
 				
 			case cherche:
-				cherche(metro, stationDepart, prochaineStation);
+				cherche(metro, stationDepart, prochaineStation, arc);
 				break;
 				
 			case rentre:
@@ -146,7 +147,7 @@ public class Main {
 			
 			metro.setEtat(Etat.premierNoeud);
 			metro.setNbStationVisitees(1);
-			metro.setCurrentArcSize(10);
+			
 			
 			//AFFICHAGE
 			System.out.println("Position sur l'arc : " + metro.getCurrentArcSize()+" sur "+ metro.getTempsTrajetArc());
@@ -161,7 +162,7 @@ public class Main {
 	
 	
 	
-	public static void cherche(Metro metro, Station stationDepart, Station prochaineStation){
+	public static void cherche(Metro metro, Station stationDepart, Station prochaineStation, Arc arc){
 		
 		
 		if (metro.currentArcSize >= metro.tempsTrajetArc) 
@@ -173,8 +174,8 @@ public class Main {
 			{
 				HashSet<Arc> arcsParcourus = new HashSet<Arc>();
 				arcsParcourus = metro.getArcsBetweenStations(metro.getStationsVisitees());
-				for (Arc arc : arcsParcourus) {
-					arc.setPheromone(arc.getPheromone()+1);
+				for (Arc arcs : arcsParcourus) {
+					arcs.setPheromone(arc.getPheromone()+1);
 				}
 				metro.setEtat(Etat.rentre);
 			}else{
@@ -186,10 +187,32 @@ public class Main {
 				prochaineStation = metro.findNextSearchStation(metro.getStationCurrent());
 				metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
 				metro.setStationDestination(prochaineStation);
+				arc = metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
+				metro.setTempsTrajetArc(arc.gettempsParcours());
+				metro.nbStationVisitees++;
+				metro.currentArcSize += 10;
 			}			
 		}else{
+			arc = metro.findArcByStationId(metro.getStationCurrent(), prochaineStation);
 			metro.currentArcSize += 10;
 		}
+		
+		//AFFICHAGE
+		System.out.println("Position sur l'arc : " + metro.getCurrentArcSize()+" sur "+ metro.getTempsTrajetArc());
+		System.out.println("Nombre de phéromones : " + arc.getPheromone());
+		System.out.println("Dernière station visitée : " + metro.getStationCurrent().getNom());
+		System.out.println("Nombre de stations visitées : " + metro.getNbStationVisitees());
+		System.out.println("Prochaine destination de la station : " + metro.getStationDestination().getNom());
+		System.out.println("Point de départ : " + metro.getStationOrigin().getNom());
+		System.out.println("Destination finale : " + metro.getStationDestinationFinal().getNom());
+		System.out.println("\n---------------------------------------\n");
+		
+		try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -214,5 +237,10 @@ public class Main {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void demarrerMetro(Metro metro){
+		metro.setEtat(Etat.cherche);
+		metro.setCurrentArcSize(10);
 	}
 }
