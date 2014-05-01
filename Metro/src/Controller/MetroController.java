@@ -38,7 +38,7 @@ public class MetroController extends Metro implements MetroInterface {
 		int cursor = 0;
 		int cursor2 = 0;
 		
-		//ON PARCOURS LA LISTE DES ARCS QUE LA STATION A PARCOURU
+		//ON PARCOURS LA LISTE DES ARCS QUE LA STATION A VISITE
 		for(Entry<Integer, Station> key : stations.entrySet()) {
 		    			
 		    nomDepart = key.getValue().getId();
@@ -47,7 +47,7 @@ public class MetroController extends Metro implements MetroInterface {
 		    for(Entry<Integer, Station> key2 : stations.entrySet()) {
 		    	
 		    	cursor2 = key2.getKey().intValue();
-		    	
+		    	//APRES AVOIR RECUPERER L'ID DE LA PREMIERE STATION ON RECUPERE l'ID DE LA STATION SUIVANTE
 		    	if (cursor2 > cursor){
 		    		nomArrivee = key2.getValue().getId();
 		    		break;
@@ -56,6 +56,8 @@ public class MetroController extends Metro implements MetroInterface {
 		    
 			for (Arc key2 : key.getValue().getArcStation())
 			{
+				//ENSUITE SI L'ARC CONTIENT L'ID DE LA PREMIERE STATION DANS SON ID DE DEPART ET L'ID DE LA 
+				//DEUXIEME STATION DANS SON ID D'ARRIVEE ALORS ON L'AJOUTE DANS LA LISTE RETOURNEE
 				if(key2.getDepart() ==  nomDepart && key2.getArrivee() == nomArrivee)
 				{
 					ListeArcBetweenStation.add(key2);
@@ -72,6 +74,7 @@ public class MetroController extends Metro implements MetroInterface {
 		ArrayList<Arc> ListeArcPheromone = new ArrayList<Arc>();
 		Station prochaineStation = new StationController();
 		
+		//ON PARCOURS LA LISTE DES ARCS DU METRO PASSE EN PARAMETRE
 		for (Arc arcStation : metro.getStationCurrent().getArcStation()) {
 			
 			double TempsTrajet = Math.round((150-arcStation.gettempsParcours())/10); 
@@ -83,12 +86,17 @@ public class MetroController extends Metro implements MetroInterface {
 			}
 			double txPheromone = (arcStation.getPheromone()*30)+phe;
 			
+			//EN FONCTION DU TEMPS DE TRAJET ET DU NOMBRE DE PHEROMONE, PLUS LE NOMBRE DE PHEROMONE
+			//EST IMPORTANT ET PLUS LE TEMPS DE TRAJET EST COURT SUR L'ARC, PLUS IL AURA DE CASE DANS LE TABLEAU
 			for (int i = 0; i < TempsTrajet+txPheromone ; i++) {
 				ListeArcPheromone.add(arcStation);
 			}			
 		}
+			//ON TIRE UN NOMBRE ALEATOIRE ENTRE 1 ET LA TAILLE DU TABLEAU
 			int nombreAleatoire = (int)(Math.random() * (ListeArcPheromone.size() - 0)) + 0;
+			//L'ARC QUE L'ON RECUPERE EST EGAL A L'INDEX DU NOMBRE ALEATOIRE
 			Arc arc = ListeArcPheromone.get(nombreAleatoire);
+			//ON RECUPERE LA PROCHAINE STATION EN PASSANT l'ID DE l'ARRIVE DE L'ARC DONC l'ID DE LA STATION DE DESTINATION
 			prochaineStation = prochaineStation.getStationId(arc.getArrivee());
 
 		return prochaineStation;
@@ -112,10 +120,4 @@ public class MetroController extends Metro implements MetroInterface {
 	{
 		ListeMetro.add(this);
 	}
-	
-	//Detruire le métro
-	public void deleteMetro(){
-		//metro = null;
-	}
-	
 }

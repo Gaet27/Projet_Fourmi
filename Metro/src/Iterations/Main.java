@@ -309,7 +309,7 @@ public class Main {
 	}
 	
 	
-	//PARCOURS DU FICHIER
+	//PARCOURS DU FICHIER DES STATIONS, ON CREER LES OBJETS STATION
 	public static void creerStations (){
 		String fichier = "donneesMetro.txt";
 		try{
@@ -337,6 +337,7 @@ public class Main {
 		}
 	}
 	
+	//PARCOURS DU FICHIER ARC, ON CREER LES OBJETS ARCS
 	public static void creerArcs (){
 		String fichier = "donneesArc.txt";
 		try{
