@@ -8,5 +8,4 @@ public interface ArcInterface {
 	
 	//DECLARE FUNCTIONS
 	static final ArrayList<Arc> ListeArc = new ArrayList<Arc>();
-	
 }

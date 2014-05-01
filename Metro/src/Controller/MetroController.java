@@ -3,10 +3,13 @@ package Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import Interfaces.MetroInterface;
-import Model.*;
-import Controller.*;
+import Model.Arc;
+import Model.Metro;
+import Model.Station;
 
 
 
@@ -19,71 +22,65 @@ public class MetroController extends Metro implements MetroInterface {
 	}
 	
 	public MetroController(Etat etat, int tempsTrajet, int nbStationVisitees,
-			HashSet<Station> stationsVisitees,
+			HashMap<Integer, Station> stationsVisitees,
 			HashSet<Station> stationsAVisitees, int currentArcSize,
 			Station currentOrigin, Station currentDestination) {
 		super(etat, tempsTrajet, nbStationVisitees, stationsVisitees,
 				stationsAVisitees, currentArcSize, currentOrigin, currentDestination);
 	}
 	
-	public void trouverProchaineStation(){
-		
-	}
-	
-	public void evoluer(){
-		
-	}
-	
-	public void deposerPheromone(){
-		
-	}
 	
 	//On récupère la liste des arcs parcouru pour pouvoir déposer les phéromones
-	public HashSet<Arc> getArcsBetweenStations(HashSet<Station> stations) {
+	public HashSet<Arc> getArcsBetweenStations(HashMap<Integer, Station> stations) {
 		HashSet<Arc> ListeArcBetweenStation  = new HashSet<Arc>();
+		
+		int nomDepart = 0;
+		int nomArrivee = 0;
+		int cursor = 0;
+		int cursor2 = 0;
 
-		int j = 1;
-		int i = 1;
-		String Station2 = null;
-		
-		for (Station key : stations)
-		{
-			//RECUPERE DE 2 EN 2
-			for (Station keyy : stations){
-			    Station2 = keyy.getNom();
-				if(j >= i+1)
-				{
-					break;
-				}
-				j++;
-			}
-			i++;
-			
-			String Station1 = key.getNom();
-		
-			for (Arc key2 : key.getArcStation())
+		for(Entry<Integer, Station> key : stations.entrySet()) {
+		    			
+		    nomDepart = key.getValue().getId();
+		    cursor = key.getKey().intValue();
+		    
+		    for(Entry<Integer, Station> key2 : stations.entrySet()) {
+		    	
+		    	cursor2 = key2.getKey().intValue();
+		    	
+		    	if (cursor2 > cursor){
+		    		nomArrivee = key2.getValue().getId();
+		    		break;
+		    	}
+		    }   
+		    
+			for (Arc key2 : key.getValue().getArcStation())
 			{
-				if(key2.getDepart() ==  Station1 && key2.getArrivee() == Station2)
+				if(key2.getDepart() ==  nomDepart && key2.getArrivee() == nomArrivee)
 				{
-					ListeArcBetweenStation .add(key2);
+					ListeArcBetweenStation.add(key2);
 				}
 			}
 		}
-		return ListeArcBetweenStation ;
+		return ListeArcBetweenStation;
 	}
+	
 	
 	//On indique la prochaine station à visiter
 	public Station findNextSearchStation(Station currentStation){
 		ArrayList<Arc> ListeArcPheromone = new ArrayList<Arc>();
 		for (Arc arcStation : currentStation.getArcStation()) {
 			
+			double TempsTrajet = Math.round((150-arcStation.gettempsParcours())/10); 
 			int phe = 0;
 			if (arcStation.getPheromone() == 0)
 			{
+			     TempsTrajet = Math.round((150-arcStation.gettempsParcours())/70); 
 				 phe = 1;
 			}
+			double txPheromone = (arcStation.getPheromone()*30)+phe;
 			
-			for (int i = 0; i < (arcStation.getPheromone()*10)+phe; i++) {
+			for (int i = 0; i < TempsTrajet+txPheromone ; i++) {
 				ListeArcPheromone.add(arcStation);
 			}			
 		}
@@ -101,7 +98,7 @@ public class MetroController extends Metro implements MetroInterface {
 		Arc arc = new ArcController();
 		for (Arc key : current.getArcStation())
 		{
-			if (key.getDepart()== current.getNom() && key.getArrivee() == next.getNom()){
+			if (key.getDepart() == current.getId() && key.getArrivee() == next.getId()){
 				arc = key;
 			}
 		}

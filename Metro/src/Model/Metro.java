@@ -1,5 +1,7 @@
 package Model;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import Interfaces.MetroInterface;
 
@@ -17,7 +19,8 @@ public abstract class Metro implements MetroInterface{
 	}
 	
 	public int nbStationVisitees;
-	public HashSet<Station> stationsVisitees = new HashSet<Station>();
+	public HashMap<Integer, Station> stationsVisitees = new HashMap<Integer, Station>();
+	private static Integer cursor = 0;
 	public HashSet<Station> stationsAVisitees = new HashSet<Station>();
 	
 	public int currentArcSize;               // Sa position en temps sur l'arc par rapport au temps du trajet
@@ -32,7 +35,7 @@ public abstract class Metro implements MetroInterface{
 	public Metro(){
 	}
 	
-	public Metro(Etat etat, int tempsTrajetArc, int nbStationVisitees,HashSet<Station> stationsVisitees,HashSet<Station> stationsAVisitees, int currentArcSize, Station stationOrigin, Station stationDestination){
+	public Metro(Etat etat, int tempsTrajetArc, int nbStationVisitees,HashMap<Integer, Station> stationsVisitees,HashSet<Station> stationsAVisitees, int currentArcSize, Station stationOrigin, Station stationDestination){
 		this.etat = etat;
 		this.tempsTrajetArc = tempsTrajetArc;
 		this.nbStationVisitees = nbStationVisitees;
@@ -70,12 +73,12 @@ public abstract class Metro implements MetroInterface{
 		this.nbStationVisitees = nbStationVisitees;
 	}
 
-	public HashSet<Station> getStationsVisitees() {
+	public HashMap<Integer, Station> getStationsVisitees() {
 		return stationsVisitees;
 	}
 
-	public void setStationsVisitees(Station stationsVisitees) {
-		this.stationsVisitees.add(stationsVisitees);
+	public void setStationsVisitees(Station station) {
+		this.stationsVisitees.put(getAndIncrement(), station);
 	}
 
 	public HashSet<Station> getStationsAVisitees() {
@@ -124,5 +127,10 @@ public abstract class Metro implements MetroInterface{
 
 	public void setStationDestinationFinal(Station stationDestinationFinal) {
 		this.stationDestinationFinal = stationDestinationFinal;
+	}
+	
+	public Integer getAndIncrement(){
+		this.cursor++;
+		return cursor;
 	}
 }

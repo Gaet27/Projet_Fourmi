@@ -20,18 +20,18 @@ public class StationController extends Station implements StationInterface{
 	public void lierStation(Station arrivee, int tempsParcours){
 		//INITIALISATION DES PHEROMONES POUR CHAQUE ARC
 		int pheromone = 0;
-		Arc arc = new ArcController(this.getNom(), arrivee.getNom(), tempsParcours, pheromone);
+		Arc arc = new ArcController(this.getId(), arrivee.getId(), tempsParcours, pheromone);
 		this.setArcStation(arc);
 		//arrivee.setArcStation(arc);
 	}
 	
 	
 	//RECUPERE LA LISTE DES ARCS EN FONCTIONS DE L'ID DE LA	STATION
-	public HashSet<Arc> getArcStationId(String id) {
+	public HashSet<Arc> getArcStationId(int id) {
 		
 		for (Station key : ListeStation)
 		{
-			if(id == key.getNom()){
+			if(id == key.getId()){
 				ArcStation = key.getArcStation();
 			}
 		}
@@ -40,11 +40,11 @@ public class StationController extends Station implements StationInterface{
 	
 	
 	//RETOURNE UNE STATION EN FONCTION DE SON ID
-	public Station getStationId(String id) {
+	public Station getStationId(int id) {
 		Station station = new StationController();
 		for (Station key : ListeStation)
 		{
-			if(id.equals(key.getNom())){
+			if(id == key.getId()){
 				station = key;
 			}
 		}

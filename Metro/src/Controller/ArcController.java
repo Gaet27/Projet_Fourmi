@@ -9,7 +9,7 @@ import Model.*;
 public class ArcController extends Arc implements ArcInterface{
 
 	//IMPLEMENTS FUNTIONS
-	public ArcController(String station1, String station2, int tempsParcours, int pheromone) {
+	public ArcController(int station1, int station2, int tempsParcours, int pheromone) {
 		super(station1, station2, tempsParcours, pheromone);
 	}
 	
