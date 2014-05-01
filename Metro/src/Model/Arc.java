@@ -6,8 +6,8 @@ public abstract class Arc implements ArcInterface{
 
 	
 	//ATTRIBUTS
-	public String depart;
-	public String arrivee;
+	public int depart;
+	public int arrivee;
 	public double pheromone;
 	public int tempsParcours;    //En secondes
 	
@@ -18,7 +18,7 @@ public abstract class Arc implements ArcInterface{
 		
 	}
 	
-	public Arc(String station1, String station2, int tempsParcours, int pheromone) {
+	public Arc(int station1, int station2, int tempsParcours, int pheromone) {
 		this.depart = station1;
 		this.arrivee = station2;
 		this.tempsParcours = tempsParcours;
@@ -33,17 +33,17 @@ public abstract class Arc implements ArcInterface{
 	public void setPheromone(double pheromone) {
 		this.pheromone = pheromone;
 	}
-	public String getDepart() {
+	public int getDepart() {
 		return depart;
 	}
-	public void setDepart(String depart) {
-		this.depart = depart;
+	public void setDepart(int depart2) {
+		this.depart = depart2;
 	}
-	public String getArrivee() {
+	public int getArrivee() {
 		return arrivee;
 	}
-	public void setArrivee(String arrivee) {
-		this.arrivee = arrivee;
+	public void setArrivee(int arrivee2) {
+		this.arrivee = arrivee2;
 	}
 	public int gettempsParcours() {
 		return tempsParcours;

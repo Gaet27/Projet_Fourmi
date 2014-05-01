@@ -115,4 +115,9 @@ public class MetroController extends Metro implements MetroInterface {
 		ListeMetro.add(this);
 	}
 	
+	//Detruire le métro
+	public void deleteMetro(){
+		//metro = null;
+	}
+	
 }

@@ -17,12 +17,13 @@ public class StationController extends Station implements StationInterface{
 	}
 	
 	//CREER LES ARCS CORRESPONDANT ET IMPLEMENTE LA LISTE DES ARCS DE LA CLASS STATION
-	public void lierStation(Station arrivee, int tempsParcours){
-		//INITIALISATION DES PHEROMONES POUR CHAQUE ARC
-		int pheromone = 0;
-		Arc arc = new ArcController(this.getNom(), arrivee.getNom(), tempsParcours, pheromone);
-		this.setArcStation(arc);
-		//arrivee.setArcStation(arc);
+	public void lier(Station station){
+		int id = station.getId();
+		for (Arc key : ArcController.ListeArc) {
+			if (id == key.getDepart()) {
+				station.setArcStation(key);
+			}
+		}
 	}
 	
 	

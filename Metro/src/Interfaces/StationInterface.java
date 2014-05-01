@@ -9,7 +9,7 @@ import Model.Station;
 public interface StationInterface {
 
 	//DECLARE FUNCTIONS
-	void lierStation(Station arrivee, int tempsParcours);
+	void lier(Station station);
 	HashSet<Arc> getArcStationId(String id);
 	Station getStationId(String id);
 	static final ArrayList<Station> ListeStation = new ArrayList<Station>();
