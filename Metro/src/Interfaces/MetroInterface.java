@@ -12,7 +12,7 @@ public interface MetroInterface {
 
 	//DECLARE FUNCTIONS
 	HashSet<Arc> getArcsBetweenStations(HashMap<Integer, Station>  stations);
-	Station findNextSearchStation(Station currentStation);
+	Station findNextSearchStation(Metro metro);
 	Arc findArcByStationId(Station current, Station next);
 	static final ArrayList<Metro> ListeMetro = new ArrayList<Metro>();
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map.Entry;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import Interfaces.MetroInterface;
 import Model.Arc;
@@ -38,7 +37,8 @@ public class MetroController extends Metro implements MetroInterface {
 		int nomArrivee = 0;
 		int cursor = 0;
 		int cursor2 = 0;
-
+		
+		//ON PARCOURS LA LISTE DES ARCS QUE LA STATION A PARCOURU
 		for(Entry<Integer, Station> key : stations.entrySet()) {
 		    			
 		    nomDepart = key.getValue().getId();
@@ -67,9 +67,12 @@ public class MetroController extends Metro implements MetroInterface {
 	
 	
 	//On indique la prochaine station à visiter
-	public Station findNextSearchStation(Station currentStation){
+	public Station findNextSearchStation(Metro metro){
+		
 		ArrayList<Arc> ListeArcPheromone = new ArrayList<Arc>();
-		for (Arc arcStation : currentStation.getArcStation()) {
+		Station prochaineStation = new StationController();
+		
+		for (Arc arcStation : metro.getStationCurrent().getArcStation()) {
 			
 			double TempsTrajet = Math.round((150-arcStation.gettempsParcours())/10); 
 			int phe = 0;
@@ -84,12 +87,10 @@ public class MetroController extends Metro implements MetroInterface {
 				ListeArcPheromone.add(arcStation);
 			}			
 		}
-		int nombreAleatoire = (int)(Math.random() * (ListeArcPheromone.size() - 0)) + 0;
-		Arc arc = ListeArcPheromone.get(nombreAleatoire);
-		
-		Station prochaineStation = new StationController();
-		prochaineStation = prochaineStation.getStationId(arc.getArrivee());
-		
+			int nombreAleatoire = (int)(Math.random() * (ListeArcPheromone.size() - 0)) + 0;
+			Arc arc = ListeArcPheromone.get(nombreAleatoire);
+			prochaineStation = prochaineStation.getStationId(arc.getArrivee());
+
 		return prochaineStation;
 	}
 	
